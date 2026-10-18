@@ -71,7 +71,7 @@ const TEAM_EMAILS = {
 //     "PHASE2_CLOUD_FUNCTION_URL":    "",
 //     "DISCOVERY_CLOUD_FUNCTION_URL": "",
 //     "OPENAI_API_KEY":               "[PRIVATED]",
-//     "SAM_GOV_API_KEY": "SAM-7b1e42ff-76ef-4604-8268-215306a77142"
+//     "SAM_GOV_API_KEY": "[PRIVATED]"
 //   });
 //   Logger.log("Secrets saved.");
 // }
