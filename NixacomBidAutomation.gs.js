@@ -1205,8 +1205,8 @@ function submitToPortal(task, pdfBlob, props, testMode) {
       method: "post",
       contentType: "application/json",
       payload: JSON.stringify({
-        username: props.getProperty("PORTAL_USERNAME") || "nixacom",
-        password: props.getProperty("PORTAL_PASSWORD") || "nixacom2026",
+        username: props.getProperty("PORTAL_USERNAME") || "[PRIVATED]",
+        password: props.getProperty("PORTAL_PASSWORD") || "[PRIVATED]",
       }),
       muteHttpExceptions: true,
     });
