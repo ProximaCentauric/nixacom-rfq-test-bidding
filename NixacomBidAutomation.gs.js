@@ -49,22 +49,22 @@ const TEAM_EMAILS = {
 //     // "true"  = test mode: emails go to TEST_EMAIL, portal = mock portal
 //     // "false" = production: emails go to real bid contacts
 //     "TEST_MODE":                    "true",
-//     "TEST_EMAIL":                   "matthewvault237@gmail.com",
+//     "TEST_EMAIL":                   "[PRIVATED]",
 
 //     // ── Nixacom emails ────────────────────────────────────────────────────
-//     "CHEIKH_EMAIL":                 "matthewvault237@gmail.com",
-//     "CONTRACTS_EMAIL":              "matthewvault237@gmail.com",
-//     "FROM_NAME":                    "Nixacom Corp — Contracts",
+//     "[REDACTED]_EMAIL":                 "[PRIVATED]",
+//     "CONTRACTS_EMAIL":              "[PRIVATED]",
+//     "FROM_NAME":                    "Company Name — Contracts",
 
 //     // ── Spreadsheet ID (from Sheet URL) ───────────────────────────────────
-//     "SPREADSHEET_ID":               "[PRIVATE]",
+//     "SPREADSHEET_ID":               "[PRIVATED]",
 
 //     // ── Mock portal (test mode only) ──────────────────────────────────────
 //     // Run: ngrok http 5000 → paste the https URL here
 //     // Leave blank to skip portal upload and do email-only
-//     "MOCK_PORTAL_URL":              "https://harbor-kerchief-elaborate.ngrok-free.dev",
-//     "PORTAL_USERNAME":              "nixacom",
-//     "PORTAL_PASSWORD":              "nixacom2026",
+//     "MOCK_PORTAL_URL":               "https://your-ngrok-url.ngrok-free.dev",
+//     "PORTAL_USERNAME":              "[PRIVATED]",
+//     "PORTAL_PASSWORD":              "[PRIVATED]",
 
 //     // ── Cloud Function URLs (leave blank until deployed to GCP) ───────────
 //     "PHASE1_CLOUD_FUNCTION_URL":    "",
