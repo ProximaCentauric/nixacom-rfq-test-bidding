@@ -31,9 +31,9 @@ const URL_COL      = 1;   // A — Portal URL
 
 // ── Team email map — update when team changes ─────────────────────────────────
 const TEAM_EMAILS = {
-  "CEO_name":   "CEO_name@nixacom.com",
-  "name_1":  "name_1@nixacom.com",
-  "name_2":  "name_2@nixacom.com",
+  "CEO_name":   "CEO_name@company.com",
+  "name_1":  "name_1@company.com",
+  "name_2":  "name_2@company.com",
 };
 
 
@@ -301,7 +301,7 @@ async function runPhase2(task, row, sheet) {
 
     // Step 3 — Determine submission email
     const submitEmail = testMode
-      ? props.getProperty("TEST_EMAIL") || "contracts@nixacom.com"
+      ? props.getProperty("TEST_EMAIL") || "contracts@company.com"
       : props.getProperty("CONTRACTS_EMAIL");
 
     // Step 4 — Send proposal email with PDF attached
@@ -1170,8 +1170,8 @@ function sendProposalEmail(task, pdfBlob, submitEmail, testMode, props) {
       : "") +
     `Submitted:  ${Utilities.formatDate(new Date(), "America/New_York", "yyyy-MM-dd HH:mm")} ET\n` +
     `Vendor:     Nixacom Corp\n` +
-    `Contact:    contracts@nixacom.com\n\n` +
-    `Respectfully,\n${fromName}\ncontracts@nixacom.com`;
+    `Contact:    contracts@company.com\n\n` +
+    `Respectfully,\n${fromName}\ncontracts@company.com`;
 
   GmailApp.sendEmail(submitEmail, subject, body, {
     name:        fromName,
@@ -1232,7 +1232,7 @@ function submitToPortal(task, pdfBlob, props, testMode) {
     mp += `--${boundary}\r\n`;
     mp += `Content-Disposition: form-data; name="vendor_name"\r\n\r\nNixacom Corp\r\n`;
     mp += `--${boundary}\r\n`;
-    mp += `Content-Disposition: form-data; name="contact_email"\r\n\r\ncontracts@nixacom.com\r\n`;
+    mp += `Content-Disposition: form-data; name="contact_email"\r\n\r\ncontracts@company.com\r\n`;
     mp += `--${boundary}\r\n`;
     mp += `Content-Disposition: form-data; name="proposal"; filename="${filename}"\r\n`;
     mp += `Content-Type: application/pdf\r\nContent-Transfer-Encoding: base64\r\n\r\n`;
@@ -1371,7 +1371,7 @@ function handleOwnerAssignment(task, row, sheet) {
       `Decision: ${task.decision}\n\n` +
       `Please review the draft proposal and update the status in the sheet.\n\n` +
       `Bid Support Sheet: ${sheetUrl}\n\n` +
-      `Questions? Contact contracts@nixacom.com\n\n— Nixacom Bid Pipeline`
+      `Questions? Contact contracts@company.com\n\n— Nixacom Bid Pipeline`
   });
 
   logToSheet("Assignment", "Email Sent", task.solicitation, `To: ${email}`);
