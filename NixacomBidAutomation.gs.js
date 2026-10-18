@@ -57,7 +57,7 @@ const TEAM_EMAILS = {
 //     "FROM_NAME":                    "Nixacom Corp — Contracts",
 
 //     // ── Spreadsheet ID (from Sheet URL) ───────────────────────────────────
-//     "SPREADSHEET_ID":               "1b_E0zRaOnrhpDXMs3o8ZmFxyaWlnzjCYzYXvAzODAH8",
+//     "SPREADSHEET_ID":               "[PRIVATE]",
 
 //     // ── Mock portal (test mode only) ──────────────────────────────────────
 //     // Run: ngrok http 5000 → paste the https URL here
