@@ -31,9 +31,9 @@ const URL_COL      = 1;   // A — Portal URL
 
 // ── Team email map — update when team changes ─────────────────────────────────
 const TEAM_EMAILS = {
-  "Cheikh":   "cheikh@nixacom.com",
-  "Ahmadou":  "ahmadou@nixacom.com",
-  "Matthew":  "matthew@nixacom.com",
+  "CEO_name":   "CEO_name@nixacom.com",
+  "name_1":  "name_1@nixacom.com",
+  "name_2":  "name_2@nixacom.com",
 };
 
 
@@ -263,7 +263,7 @@ function runPhase1(task, row, sheet) {
 //   4. Send PDF to bid contact email (or TEST_EMAIL in test mode)
 //   5. Submit to mock portal via API (if MOCK_PORTAL_URL is set)
 //   6. Write confirmation number + status back to Sheet
-//   7. Send confirmation email to Cheikh + owner
+//   7. Send confirmation email to CEO_name + owner
 // ════════════════════════════════════════════════════════════════════════════════
 
 async function runPhase2(task, row, sheet) {
@@ -323,7 +323,7 @@ async function runPhase2(task, row, sheet) {
       `Submitted via ${portalResult.method} | ${ts}`
     );
 
-    // Step 7 — Send confirmation to Cheikh + owner
+    // Step 7 — Send confirmation to CEO_name + owner
     sendConfirmationEmail(task, conf, submitEmail, portalResult, pdfUrl, props);
     logToSheet("Phase 2", "Complete", task.solicitation, `Conf: ${conf}`);
 
@@ -1273,13 +1273,13 @@ function submitToPortal(task, pdfBlob, props, testMode) {
 
 // ════════════════════════════════════════════════════════════════════════════════
 // SECTION 8 — CONFIRMATION EMAIL
-// Sent to Cheikh + owner after submission completes successfully.
+// Sent to CEO_name + owner after submission completes successfully.
 // ════════════════════════════════════════════════════════════════════════════════
 
 function sendConfirmationEmail(task, conf, submitEmail, portalResult, docUrl, props) {
-  const cheikhEmail = props.getProperty("CHEIKH_EMAIL");
+  const CEO_nameEmail = props.getProperty("CEO_name_EMAIL");
   const ownerEmail  = TEAM_EMAILS[task.owner] || "";
-  const toList      = [cheikhEmail, ownerEmail].filter(Boolean).join(",");
+  const toList      = [CEO_nameEmail, ownerEmail].filter(Boolean).join(",");
   const ts          = Utilities.formatDate(
     new Date(), "America/New_York", "yyyy-MM-dd HH:mm"
   );
@@ -1317,7 +1317,7 @@ function handleCaution(task, row, sheet) {
   } else {
     const props = PropertiesService.getScriptProperties();
     MailApp.sendEmail({
-      to:      props.getProperty("CHEIKH_EMAIL"),
+      to:      props.getProperty("CEO_name_EMAIL"),
       subject: `⚠️ Action Required — CAUTION Bid: ${task.solicitation}`,
       body:
         `This bid was flagged CAUTION and needs explicit confirmation.\n\n` +
@@ -1360,7 +1360,7 @@ function handleOwnerAssignment(task, row, sheet) {
 
   MailApp.sendEmail({
     to:      email,
-    cc:      props.getProperty("CHEIKH_EMAIL"),
+    cc:      props.getProperty("CEO_name_EMAIL"),
     subject: `[Nixacom] Bid Assigned to You — ${task.solicitation}`,
     body:
       `Hi ${task.owner},\n\n` +
@@ -1587,7 +1587,7 @@ function getTaskRow(sheet, row) {
 
 function sendAlert(subject, detail, task) {
   const props = PropertiesService.getScriptProperties();
-  const to    = props.getProperty("CHEIKH_EMAIL");
+  const to    = props.getProperty("CEO_name_EMAIL");
   const cc    = task && task.owner && TEAM_EMAILS[task.owner]
                ? TEAM_EMAILS[task.owner]
                : (props.getProperty("CONTRACTS_EMAIL") || "");
@@ -1780,7 +1780,7 @@ function sendGPTAnalysisEmail(task, result, props) {
   const testMode = props.getProperty("TEST_MODE") === "true";
   const to       = testMode
     ? props.getProperty("TEST_EMAIL")
-    : [props.getProperty("CHEIKH_EMAIL"), TEAM_EMAILS[task.owner]].filter(Boolean).join(",");
+    : [props.getProperty("CEO_name_EMAIL"), TEAM_EMAILS[task.owner]].filter(Boolean).join(",");
 
   const decision = result.decision || "UNKNOWN";
   const emoji    = decision === "PURSUE" ? "✅" : "❌";
@@ -1838,7 +1838,7 @@ function getGPTReasoning(row) {
 //   - Searches SAM.gov for opportunities matching Nixacom's service areas
 //   - Filters out duplicates already in the Sheet
 //   - Writes new opportunities as "Not Started" rows to the Tasks tab
-//   - Sends a discovery summary email to Cheikh
+//   - Sends a discovery summary email to CEO_name
 //   - BidGPT then auto-analyzes each new row (once real OpenAI key is set)
 // ════════════════════════════════════════════════════════════════════════════════
 
@@ -2159,7 +2159,7 @@ function parseSAMOpportunity(opp) {
     return {
       url:          noticeUrl,
       solicitation: solNum,
-      owner:        "",           // to be assigned manually or by Cheikh
+      owner:        "",           // to be assigned manually or by CEO_name
       dueDate:      dueDate,
       status:       "Not Started",
       decision:     "",           // BidGPT fills this
@@ -2265,10 +2265,10 @@ function getExistingSolicitations(sheet) {
 
 function sendDiscoverySummaryEmail(total, added, newOpps, props) {
   const testMode    = props.getProperty("TEST_MODE") === "true";
-  const cheikhEmail = props.getProperty("CHEIKH_EMAIL");
+  const CEO_nameEmail = props.getProperty("CEO_name_EMAIL");
   const to          = testMode
     ? props.getProperty("TEST_EMAIL")
-    : cheikhEmail;
+    : CEO_nameEmail;
 
   if (!to) return;
 
